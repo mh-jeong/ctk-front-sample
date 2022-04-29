@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 import SideTab from "./SideTab";
 import TabNavigation from "./TabNavigation";
+import { useRouter } from "next/router";
 
 const Base = styled.div`
   z-index: 8;
@@ -22,7 +23,7 @@ const AppBody = ({ children }) => {
     <Base>
       <TabNavigation />
       <Body>
-        <SideTab>123123</SideTab>
+        <SideTab />
         <Content>{children}</Content>
       </Body>
     </Base>

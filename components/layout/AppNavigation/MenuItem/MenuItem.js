@@ -1,7 +1,9 @@
-import Link from "next/link";
 import styled from "@emotion/styled";
-import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { createRipples } from "react-ripples";
+
 import useStore from "/mobx/store";
 
 const Base = styled.li`
@@ -14,9 +16,11 @@ const Base = styled.li`
 const Menu = styled.div`
   color: ${({ active }) => (active ? "#fff" : "#a4a4a4")};
   background-color: ${({ selected }) => (selected ? "rgba(255, 255, 255, 0.1)" : "")};
+  width: 100%;
   padding-top: 22px;
   padding-bottom: 22px;
   text-align: center;
+  transition: 0.25s;
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
@@ -40,6 +44,7 @@ const SubMenuWrapper = styled.ul`
 `;
 
 const SubMenu = styled.li`
+  width: 100%;
   height: 44px;
   padding: 0 24px;
   display: flex;
@@ -48,6 +53,16 @@ const SubMenu = styled.li`
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
+`;
+
+const Ripples = createRipples({
+  color: "#ffffff1a",
+  during: 1600,
+});
+
+const StyledRipples = styled(Ripples)`
+  display: block !important;
+  width: 100%;
 `;
 
 const MenuItem = ({ menu }) => {
@@ -85,28 +100,33 @@ const MenuItem = ({ menu }) => {
         name: e.target.dataset.name,
         href: e.target.dataset.href,
       });
+      commonStore.pathname = e.target.dataset.href;
     }
   });
 
   return (
     <>
       {!menu.sub.length > 0 ? (
-        <Link href={menu.href}>
-          <a>
-            <Base>
-              <Menu active={pathname === menu.href}>Home</Menu>
-            </Base>
-          </a>
-        </Link>
+        <Ripples>
+          <Link href={menu.href}>
+            <a>
+              <Base>
+                <Menu active={pathname === menu.href}>Home</Menu>
+              </Base>
+            </a>
+          </Link>
+        </Ripples>
       ) : (
         <Base ref={menuRef}>
-          <Menu
-            active={pathname.indexOf(menu.name.toLowerCase()) > -1}
-            selected={selectedMenu === menu.name.toLowerCase()}
-            onClick={handleClickMenu}
-            data-name={menu.name.toLowerCase()}>
-            {menu.name}
-          </Menu>
+          <StyledRipples>
+            <Menu
+              active={pathname.indexOf(menu.name.toLowerCase()) > -1}
+              selected={selectedMenu === menu.name.toLowerCase()}
+              onClick={handleClickMenu}
+              data-name={menu.name.toLowerCase()}>
+              {menu.name}
+            </Menu>
+          </StyledRipples>
           <Container>
             <SubMenuWrapper selected={selectedMenu === menu.name.toLowerCase()}>
               {menu.sub?.map((subMenu) => (

@@ -2,16 +2,16 @@ import styled from "@emotion/styled";
 import { useObserver } from "mobx-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
 import useStore from "/mobx/store";
-import { useCallback } from "react";
 
 const Base = styled.nav`
   background-color: #ebecf0;
   display: flex;
   height: 60px;
-  padding: 12px 16px 10px;
+  padding: 12px 24px 10px;
   box-shadow: inset 0 2px 4px rgb(0 0 0 / 50%);
 `;
 
@@ -25,9 +25,10 @@ const Tab = styled.li`
   box-shadow: ${({ active }) => (active ? "1px 2px 4px rgb(0 0 0 / 25%)" : "unset")};
   background-color: ${({ theme }) => theme.colors.white};
   position: relative;
-  min-width: 220px;
+  min-width: 232px;
   border-radius: 4px;
   font-size: 16px;
+  transition: 0.25s;
   &:not(:first-of-type) {
     margin-left: 8px;
   }
@@ -60,6 +61,10 @@ const TabNavigation = () => {
   const { pathname } = useRouter();
   const { commonStore } = useStore();
 
+  const handleTabClick = (e) => {
+    commonStore.pathname = e.currentTarget.dataset.href;
+  };
+
   const handleTabClose = useCallback((e) => {
     commonStore.tabNavigationItems = commonStore.tabNavigationItems.filter((item) => {
       return item.href !== e.currentTarget.dataset.href;
@@ -77,7 +82,11 @@ const TabNavigation = () => {
             key={item.href}>
             <Link href={item.href}>
               <a>
-                <TabName active={pathname === item.href}>{item.name}</TabName>
+                <TabName
+                  active={pathname === item.href}
+                  onClick={handleTabClick}>
+                  {item.name}
+                </TabName>
               </a>
             </Link>
             <CloseTabButton

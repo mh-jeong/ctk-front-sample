@@ -2,7 +2,7 @@ export const MENU_LIST_DATA = [
   {
     id: 0,
     name: "Home",
-    href: "/inbound",
+    href: "/",
     sub: [],
   },
   {

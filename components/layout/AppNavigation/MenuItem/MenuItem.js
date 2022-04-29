@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 const Base = styled.li`
   position: relative;
-  min-width: 200px;
+  min-width: 240px;
   cursor: pointer;
   background-color: ${({ theme }) => theme.colors.primary};
 `;
@@ -71,20 +71,24 @@ const MenuItem = ({ menu }) => {
     setSelectedMenu(e.target.dataset.name);
   };
 
+  const handleClickSubMenu = () => {
+    setSelectedMenu("");
+  };
+
   return (
     <>
       {!menu.sub.length > 0 ? (
-        <Link href="/">
+        <Link href={menu.href}>
           <a>
             <Base>
-              <Menu active={pathname === "/"}>Home</Menu>
+              <Menu active={pathname === menu.href}>Home</Menu>
             </Base>
           </a>
         </Link>
       ) : (
         <Base ref={menuRef}>
           <Menu
-            active={pathname === menu.href}
+            active={pathname.indexOf(menu.name.toLowerCase()) > -1}
             selected={selectedMenu === menu.name.toLowerCase()}
             onClick={handleClickMenu}
             data-name={menu.name.toLowerCase()}>
@@ -97,7 +101,11 @@ const MenuItem = ({ menu }) => {
                   href={subMenu.href}
                   key={subMenu.id}>
                   <a>
-                    <SubMenu>{subMenu.name}</SubMenu>
+                    <SubMenu
+                      active={pathname === subMenu.href}
+                      onClick={handleClickSubMenu}>
+                      {subMenu.name}
+                    </SubMenu>
                   </a>
                 </Link>
               ))}

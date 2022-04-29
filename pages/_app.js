@@ -1,11 +1,11 @@
 import "styles/globals.css";
 
 import { ThemeProvider } from "@emotion/react";
-import Head from "next/head";
-import theme from "styles/theme";
-
+import AppBody from "components/layout/AppBody";
 import AppHeader from "components/layout/AppHeader";
 import AppNavigation from "components/layout/AppNavigation/AppNavigation";
+import Head from "next/head";
+import theme from "styles/theme";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -16,7 +16,9 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <AppHeader />
         <AppNavigation />
-        <Component {...pageProps} />
+        <AppBody>
+          <Component {...pageProps} />
+        </AppBody>
       </ThemeProvider>
     </>
   );

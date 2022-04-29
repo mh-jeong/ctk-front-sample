@@ -1,4 +1,5 @@
 import "styles/globals.css";
+import "styles/transition.css";
 
 import { ThemeProvider } from "@emotion/react";
 import AppBody from "components/layout/AppBody";

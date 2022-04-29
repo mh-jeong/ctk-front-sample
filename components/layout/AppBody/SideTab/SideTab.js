@@ -30,9 +30,9 @@ const TabItem = styled.button`
 const SideTab = () => {
   return (
     <Base active={true}>
-      <TabItem>side feature</TabItem>
-      <TabItem active={true}>side feature</TabItem>
-      <TabItem>side feature</TabItem>
+      <TabItem>side feature 1</TabItem>
+      <TabItem active={true}>side feature 2</TabItem>
+      <TabItem>side feature 3</TabItem>
     </Base>
   );
 };

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
 import useStore from "/mobx/store";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 
 const Base = styled.nav`
   background-color: #ebecf0;
@@ -17,6 +17,8 @@ const Base = styled.nav`
 
 const TabList = styled.ul`
   display: flex;
+  scrollbar-width: none;
+  overflow: scroll;
 `;
 
 const Tab = styled.li`
@@ -52,11 +54,17 @@ const CloseTabButton = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  padding: 9px 12px 9px 20px;
+  //padding: 9px 12px 9px 20px;
+  width: 48px;
+  height: 36px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const TabNavigation = () => {
+  const tabListRef = useRef();
   const { pathname } = useRouter();
   const { commonStore } = useStore();
 
@@ -66,11 +74,19 @@ const TabNavigation = () => {
     });
   });
 
+  const handleYtoXWheel = useCallback(
+    (e) => (tabListRef.current.scrollLeft += e.deltaY),
+    [tabListRef],
+  );
+
   console.log("@commonStore.tabNavigationItems", commonStore.tabNavigationItems);
 
   return useObserver(() => (
     <Base>
-      <TabList>
+      <TabList
+        ref={tabListRef}
+        className="no-scroll"
+        onWheel={handleYtoXWheel}>
         {commonStore.tabNavigationItems.map((item) => (
           <Tab
             active={pathname === item.href}

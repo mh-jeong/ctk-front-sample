@@ -51,3 +51,6 @@ a {
 * {
   box-sizing: border-box;
 }
+.no-scroll::-webkit-scrollbar {
+	display: none;
+}

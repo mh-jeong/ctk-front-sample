@@ -1,7 +1,9 @@
 import TabNavigation from "./TabNavigation";
 import styled from "@emotion/styled";
 
-const Base = styled.div``;
+const Base = styled.div`
+  z-index: 8;
+`;
 
 const Body = styled.section``;
 

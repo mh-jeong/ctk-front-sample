@@ -8,6 +8,7 @@ const Base = styled.nav`
   padding-right: 16px;
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.primary};
+  z-index: 9;
 `;
 
 const MenuList = styled.ul`

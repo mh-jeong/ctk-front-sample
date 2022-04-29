@@ -1,38 +1,51 @@
 import styled from "@emotion/styled";
-import { IoCloseCircleSharp } from "react-icons/io5";
+import { useObserver } from "mobx-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { IoCloseCircleSharp } from "react-icons/io5";
+
+import useStore from "/mobx/store";
+import { useCallback } from "react";
 
 const Base = styled.nav`
-  display: flex;
-  //height: 52px;
-  padding: 13px 16px 11px;
   background-color: ${({ theme }) => theme.colors.gray};
+  display: flex;
+  height: 60px;
+  padding: 12px 16px 10px;
   box-shadow: inset 0 2px 4px rgb(0 0 0 / 50%);
 `;
 
-const TabList = styled.ul``;
+const TabList = styled.ul`
+  display: flex;
+`;
 
 const Tab = styled.li`
-  position: relative;
-  min-width: 220px;
   border: 1px solid ${({ active, theme }) => (active ? theme.colors.black : "#a4a4a4")};
   color: ${({ active, theme }) => (active ? theme.colors.black : "#a4a4a4")};
-  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ active }) => (active ? "1px 2px 4px rgb(0 0 0 / 25%)" : "unset")};
+  background-color: ${({ theme }) => theme.colors.white};
+  position: relative;
+  min-width: 220px;
   border-radius: 4px;
   font-size: 16px;
   &:not(:first-of-type) {
     margin-left: 8px;
   }
+  &:hover {
+    background-color: #deebff;
+    box-shadow: 1px 2px 4px rgb(0 0 0 / 25%);
+  }
 `;
 
 const TabName = styled.div`
+  color: ${({ active, theme }) => (active ? theme.colors.black : "#a4a4a4")};
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 36px;
   padding-left: 12px;
   cursor: pointer;
+  white-space: nowrap;
 `;
 
 const CloseTabButton = styled.div`
@@ -44,25 +57,37 @@ const CloseTabButton = styled.div`
 `;
 
 const TabNavigation = () => {
-  const handleTabClose = () => {
-    console.log("@handleTabClose");
-  };
-  return (
+  const { pathname } = useRouter();
+  const { commonStore } = useStore();
+
+  const handleTabClose = useCallback((e) => {
+    commonStore.tabNavigationItems = commonStore.tabNavigationItems.filter((item) => {
+      return item.href !== e.currentTarget.dataset.href;
+    });
+  });
+
+  return useObserver(() => (
     <Base>
       <TabList>
-        <Tab active={true}>
-          <Link href="/inbound">
-            <a>
-              <TabName>inbound/list</TabName>
-            </a>
-          </Link>
-          <CloseTabButton onClick={handleTabClose}>
-            <IoCloseCircleSharp />
-          </CloseTabButton>
-        </Tab>
+        {commonStore.tabNavigationItems.map((item) => (
+          <Tab
+            active={pathname === item.href}
+            key={item.href}>
+            <Link href={item.href}>
+              <a>
+                <TabName active={pathname === item.href}>{item.name}</TabName>
+              </a>
+            </Link>
+            <CloseTabButton
+              onClick={handleTabClose}
+              data-href={item.href}>
+              <IoCloseCircleSharp />
+            </CloseTabButton>
+          </Tab>
+        ))}
       </TabList>
     </Base>
-  );
+  ));
 };
 
 export default TabNavigation;

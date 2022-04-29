@@ -1,7 +1,8 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import useStore from "/mobx/store";
 
 const Base = styled.li`
   position: relative;
@@ -27,6 +28,7 @@ const Container = styled.div`
   top: 60px;
   height: 0;
   min-width: 240px;
+  z-index: 9;
 `;
 
 const SubMenuWrapper = styled.ul`
@@ -49,6 +51,8 @@ const SubMenu = styled.li`
 `;
 
 const MenuItem = ({ menu }) => {
+  const { commonStore } = useStore();
+
   const [selectedMenu, setSelectedMenu] = useState("");
 
   const { pathname } = useRouter();
@@ -67,13 +71,22 @@ const MenuItem = ({ menu }) => {
     };
   }, [menuRef]);
 
-  const handleClickMenu = (e) => {
+  const handleClickMenu = useCallback((e) => {
     setSelectedMenu(e.target.dataset.name);
-  };
+  });
 
-  const handleClickSubMenu = () => {
+  const handleClickSubMenu = useCallback((e) => {
     setSelectedMenu("");
-  };
+
+    const hasItem = commonStore.tabNavigationItems.find((o) => o.href === e.target.dataset.href);
+
+    if (!hasItem) {
+      commonStore.tabNavigationItems.push({
+        name: e.target.dataset.name,
+        href: e.target.dataset.href,
+      });
+    }
+  });
 
   return (
     <>
@@ -103,7 +116,9 @@ const MenuItem = ({ menu }) => {
                   <a>
                     <SubMenu
                       active={pathname === subMenu.href}
-                      onClick={handleClickSubMenu}>
+                      onClick={handleClickSubMenu}
+                      data-name={subMenu.name}
+                      data-href={subMenu.href}>
                       {subMenu.name}
                     </SubMenu>
                   </a>

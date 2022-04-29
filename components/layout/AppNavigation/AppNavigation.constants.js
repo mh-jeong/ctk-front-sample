@@ -12,12 +12,12 @@ export const MENU_LIST_DATA = [
     sub: [
       {
         id: 0,
-        name: "List",
+        name: "Inbound List",
         href: "/inbound",
       },
       {
         id: 1,
-        name: "Process",
+        name: "Inbound Process",
         href: "/inbound/process",
       },
     ],
@@ -29,22 +29,22 @@ export const MENU_LIST_DATA = [
     sub: [
       {
         id: 0,
-        name: "List",
+        name: "Outbound List",
         href: "/outbound",
       },
       {
         id: 1,
-        name: "Process",
+        name: "Outbound Process",
         href: "/outbound/process",
       },
       {
         id: 2,
-        name: "Picking",
+        name: "Outbound Picking",
         href: "/outbound/picking",
       },
       {
         id: 3,
-        name: "Packing",
+        name: "Outbound Packing",
         href: "/outbound/packing",
       },
     ],
@@ -56,12 +56,12 @@ export const MENU_LIST_DATA = [
     sub: [
       {
         id: 0,
-        name: "List",
+        name: "Inventory List",
         href: "/inventory",
       },
       {
         id: 1,
-        name: "Adjustment",
+        name: "Inventory Adjustment",
         href: "/inventory/adjustment",
       },
     ],
@@ -73,7 +73,7 @@ export const MENU_LIST_DATA = [
     sub: [
       {
         id: 0,
-        name: "List",
+        name: "Master Data List",
         href: "/master-data",
       },
       {
@@ -95,7 +95,7 @@ export const MENU_LIST_DATA = [
     sub: [
       {
         id: 0,
-        name: "List",
+        name: "Location List",
         href: "/location",
       },
       {

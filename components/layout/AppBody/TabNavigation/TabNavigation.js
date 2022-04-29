@@ -8,7 +8,7 @@ import useStore from "/mobx/store";
 import { useCallback } from "react";
 
 const Base = styled.nav`
-  background-color: ${({ theme }) => theme.colors.gray};
+  background-color: #ebecf0;
   display: flex;
   height: 60px;
   padding: 12px 16px 10px;

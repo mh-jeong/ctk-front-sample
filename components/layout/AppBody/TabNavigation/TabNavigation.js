@@ -66,6 +66,8 @@ const TabNavigation = () => {
     });
   });
 
+  console.log("@commonStore.tabNavigationItems", commonStore.tabNavigationItems);
+
   return useObserver(() => (
     <Base>
       <TabList>

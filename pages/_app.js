@@ -8,6 +8,7 @@ import AppNavigation from "components/layout/AppNavigation/AppNavigation";
 import Head from "next/head";
 import theme from "styles/theme";
 import ModalProvider from "components/common/Modal/ModalsProvider";
+// import ReactModal from "react-modal";
 
 function MyApp({ Component, pageProps }) {
   return (

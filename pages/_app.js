@@ -7,6 +7,7 @@ import AppHeader from "components/layout/AppHeader";
 import AppNavigation from "components/layout/AppNavigation/AppNavigation";
 import Head from "next/head";
 import theme from "styles/theme";
+import ModalProvider from "components/common/Modal/ModalsProvider";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -15,11 +16,14 @@ function MyApp({ Component, pageProps }) {
         <title>COLO - Global</title>
       </Head>
       <ThemeProvider theme={theme}>
-        <AppHeader />
-        <AppNavigation />
-        <AppBody>
-          <Component {...pageProps} />
-        </AppBody>
+        <ModalProvider>
+          <AppHeader />
+          <AppNavigation />
+          <AppBody>
+            <Component {...pageProps} />
+          </AppBody>
+          <div id="modal-root" />
+        </ModalProvider>
       </ThemeProvider>
     </>
   );

@@ -1,20 +1,21 @@
-.transition-enter {
-    opacity: 0;
-}
-
-.transition-enter-active {
-    opacity: 1;
-    transition: opacity 300ms;
-}
-
-.transition-exit {
-    opacity: 1;
-}
-
-.transition-exit-active {
-    opacity: 0;
-    transition: opacity 300ms;
-}
 .hp_noScroll::-webkit-scrollbar {
 	display: none;
+}
+
+.modal-enter {
+    opacity: 0;
+}
+
+.modal-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
+.modal-exit {
+    opacity: 1;
+}
+
+.modal-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
 }

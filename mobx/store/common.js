@@ -5,6 +5,10 @@ const commonStore = observable({
     tabNavigationItems: [],
     selectedMenuHref: "",
   },
+  modal: {
+    open: () => {},
+    close: () => {},
+  },
 });
 
 export default commonStore;

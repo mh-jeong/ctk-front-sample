@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import PageDashboardBox from "components/common/PageDashboard";
-import PageButtonPannel from "../../../components/common/PageButtonPannel";
-import PageTable from "../../../components/common/PageTable";
+import API from "api";
+import PageButtonPannel from "components/common/PageButtonPannel";
+import ReactTable from "components/common/ReactTable";
 
 const Base = styled.div``;
 
@@ -17,7 +17,7 @@ const ContentHead = styled.div`
 
 const ContentBody = styled.div``;
 
-const InboundProcessPage = () => {
+const InboundProcessPage = ({ data }) => {
   return (
     <Base>
       <Heading>Inbound Process Page</Heading>
@@ -25,10 +25,21 @@ const InboundProcessPage = () => {
         <PageButtonPannel />
       </ContentHead>
       <ContentBody>
-        <PageTable />
+        <ReactTable
+          title={"Packing List"}
+          propData={data.results}
+        />
       </ContentBody>
     </Base>
   );
+};
+
+export const getServerSideProps = async () => {
+  const result = await API.get("/movie/upcoming");
+
+  return {
+    props: { data: result.data },
+  };
 };
 
 export default InboundProcessPage;

@@ -10,7 +10,8 @@ const Base = styled.div`
   width: 200px;
   padding: 24px 16px;
   border-right: 1px solid #eee;
-  background-color: #f4f5f7;
+  //background-color: #f4f5f7;
+  background-color: #fafbfc;
   overflow: hidden;
 `;
 

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { createRipples } from "react-ripples";
 
 const Base = styled.div`
-  margin-top: 28px;
+  margin-top: 8px;
 `;
 
 const ButtonList = styled.ul`
@@ -24,7 +24,7 @@ const Button = styled.button`
   border: 1px solid #a4a4a4;
   border-radius: 4px;
   background-color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   &:hover {
     background-color: #deebff;

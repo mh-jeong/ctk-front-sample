@@ -11,6 +11,7 @@ const nextConfig = {
         pages: path.resolve(__dirname, "/pages"),
         store: path.resolve(__dirname, "/mobx/store"),
         styles: path.resolve(__dirname, "/styles"),
+        api: path.resolve(__dirname, "/api"),
         ...config.resolve.alias,
       },
     };

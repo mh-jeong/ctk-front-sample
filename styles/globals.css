@@ -21,6 +21,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 body {
+  min-width: 1920px;
   min-height: 100vh;
   color: #202020;
   line-height: 1;
@@ -50,7 +51,4 @@ a {
 }
 * {
   box-sizing: border-box;
-}
-.no-scroll::-webkit-scrollbar {
-	display: none;
 }

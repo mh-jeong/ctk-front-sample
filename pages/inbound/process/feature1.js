@@ -1,5 +1,5 @@
-const InboundTmpPage = () => {
-  return <>InboundTmpPage feature 1</>;
+const InboundFeaturePage = () => {
+  return <>InboundFeaturePage 1</>;
 };
 
-export default InboundTmpPage;
+export default InboundFeaturePage;

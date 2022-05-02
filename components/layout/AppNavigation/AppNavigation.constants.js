@@ -19,6 +19,23 @@ export const MENU_LIST_DATA = [
         id: 1,
         name: "Inbound Process",
         href: "/inbound/process",
+        sub: [
+          {
+            id: 0,
+            name: "Feature1",
+            href: "/inbound/process/feature1",
+          },
+          {
+            id: 1,
+            name: "Feature2",
+            href: "/inbound/process/feature2",
+          },
+          {
+            id: 2,
+            name: "Feature3",
+            href: "/inbound/process/feature3",
+          },
+        ],
       },
     ],
   },
@@ -36,6 +53,23 @@ export const MENU_LIST_DATA = [
         id: 1,
         name: "Outbound Process",
         href: "/outbound/process",
+        sub: [
+          {
+            id: 0,
+            name: "Feature1",
+            href: "/outbound/process/feature1",
+          },
+          {
+            id: 1,
+            name: "Feature2",
+            href: "/outbound/process/feature2",
+          },
+          {
+            id: 2,
+            name: "Feature3",
+            href: "/outbound/process/feature3",
+          },
+        ],
       },
       {
         id: 2,

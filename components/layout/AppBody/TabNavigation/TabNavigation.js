@@ -61,30 +61,29 @@ const TabNavigation = () => {
   const { pathname } = useRouter();
   const { commonStore } = useStore();
 
-  const handleTabClick = (e) => {
-    commonStore.pathname = e.currentTarget.dataset.href;
-  };
-
   const handleTabClose = useCallback((e) => {
-    commonStore.tabNavigationItems = commonStore.tabNavigationItems.filter((item) => {
+    commonStore.menu.tabNavigationItems = commonStore.menu.tabNavigationItems.filter((item) => {
       return item.href !== e.currentTarget.dataset.href;
     });
   });
 
-  console.log("@commonStore.tabNavigationItems", commonStore.tabNavigationItems);
+  const handleMenuClick = (e) => {
+    commonStore.menu.selectedMenuHref = e.target.dataset.href;
+  };
 
   return useObserver(() => (
     <Base>
       <TabList>
-        {commonStore.tabNavigationItems.map((item) => (
+        {commonStore.menu.tabNavigationItems.map((item) => (
           <Tab
-            active={pathname === item.href}
+            active={pathname === item.href || item.href === commonStore.menu.selectedMenuHref}
             key={item.href}>
             <Link href={item.href}>
               <a>
                 <TabName
-                  active={pathname === item.href}
-                  onClick={handleTabClick}>
+                  active={pathname === item.href || item.href === commonStore.menu.selectedMenuHref}
+                  onClick={handleMenuClick}
+                  data-href={item.href}>
                   {item.name}
                 </TabName>
               </a>

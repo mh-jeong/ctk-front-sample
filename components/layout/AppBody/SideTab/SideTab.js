@@ -1,15 +1,14 @@
 import styled from "@emotion/styled";
-import Ripples from "components/common/Ripples";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import useStore from "/mobx/store";
 import { useObserver } from "mobx-react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import useStore from "store";
+import { createRipples } from "react-ripples";
 
 const Base = styled.div`
-  width: ${({ active }) => (active ? "200px" : 0)};
-  transition: 0.2s;
-  padding: ${({ active }) => (active ? "24px 16px" : "24px 0")};
+  width: 200px;
+  padding: 24px 16px;
   border-right: 1px solid #eee;
   background-color: #f4f5f7;
   overflow: hidden;
@@ -32,6 +31,11 @@ const TabItem = styled.button`
   }
 `;
 
+const Ripples = createRipples({
+  color: "rgba(8,58,144,0.3)",
+  during: 1600,
+});
+
 const StyledRipples = styled(Ripples)`
   &:not(:first-of-type) {
     margin-top: 16px;
@@ -39,33 +43,53 @@ const StyledRipples = styled(Ripples)`
 `;
 
 const SideTab = () => {
-  const { commonStore } = useStore();
+  const router = useRouter();
   const [selected, setSelected] = useState(1);
-  const { pathname } = useRouter();
-  const features = [...new Array(3)].map((_, i) => i + 1);
+
+  const { commonStore } = useStore();
+
   const handleTab = (e) => {
     setSelected(e.currentTarget.dataset.value);
   };
-  return useObserver(() => (
-    <Base active={pathname.indexOf("process") > -1}>
-      {features.map((value) => {
-        return (
-          <StyledRipples key={value}>
-            <Link href={commonStore.pathname + `/feature${value}`}>
-              <a>
-                <TabItem
-                  active={value === Number(selected)}
-                  onClick={handleTab}
-                  data-value={value}>
-                  side feature {value}
-                </TabItem>
-              </a>
-            </Link>
-          </StyledRipples>
-        );
-      })}
-    </Base>
-  ));
+
+  const DUMMY_ITEMS = [...new Array(3)].map((_, i) => i + 1);
+
+  useEffect(() => {
+    setSelected(1);
+  }, [commonStore.menu.selectedMenuHref]);
+
+  return useObserver(
+    () =>
+      commonStore?.menu?.selectedMenuHref &&
+      commonStore?.menu?.selectedMenuHref.indexOf("process") > -1 && (
+        <Base active={commonStore?.menu?.selectedMenuHref.indexOf("process") > -1}>
+          {DUMMY_ITEMS.map((value) => {
+            let href = "/";
+
+            if (value === 1) {
+              href = commonStore.menu.selectedMenuHref;
+            } else {
+              href = commonStore.menu.selectedMenuHref + `/feature${value}`;
+            }
+
+            return (
+              <StyledRipples key={value}>
+                <Link href={href}>
+                  <a>
+                    <TabItem
+                      active={value === Number(selected)}
+                      onClick={handleTab}
+                      data-value={value}>
+                      side feature {value}
+                    </TabItem>
+                  </a>
+                </Link>
+              </StyledRipples>
+            );
+          })}
+        </Base>
+      ),
+  );
 };
 
 export default SideTab;

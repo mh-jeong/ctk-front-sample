@@ -75,8 +75,8 @@ const MenuItem = ({ menu }) => {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
         setSelectedMenu("");
       }
     };
@@ -93,15 +93,17 @@ const MenuItem = ({ menu }) => {
   const handleClickSubMenu = useCallback((e) => {
     setSelectedMenu("");
 
-    const hasItem = commonStore.tabNavigationItems.find((o) => o.href === e.target.dataset.href);
+    const tabNavigationHasSelectedMenu = commonStore.menu.tabNavigationItems.find(
+      (o) => o.href === e.target.dataset.href,
+    );
 
-    if (!hasItem) {
-      commonStore.tabNavigationItems.push({
+    if (!tabNavigationHasSelectedMenu) {
+      commonStore.menu.tabNavigationItems.push({
         name: e.target.dataset.name,
         href: e.target.dataset.href,
       });
-      commonStore.pathname = e.target.dataset.href;
     }
+    commonStore.menu.selectedMenuHref = e.target.dataset.href;
   });
 
   return (
@@ -135,7 +137,10 @@ const MenuItem = ({ menu }) => {
                   key={subMenu.id}>
                   <a>
                     <SubMenu
-                      active={pathname === subMenu.href}
+                      active={
+                        pathname === subMenu.href ||
+                        subMenu.href === commonStore.menu.selectedMenuHref
+                      }
                       onClick={handleClickSubMenu}
                       data-name={subMenu.name}
                       data-href={subMenu.href}>

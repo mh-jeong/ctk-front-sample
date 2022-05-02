@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 import SideTab from "./SideTab";
 import TabNavigation from "./TabNavigation";
-import { useRouter } from "next/router";
 
 const Base = styled.div`
   z-index: 8;

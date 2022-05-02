@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { useObserver } from "mobx-react";
+import { observer } from "mobx-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import useStore from "store";
 import { createRipples } from "react-ripples";
+import useStore from "store";
 
 const Base = styled.div`
   width: 200px;
@@ -58,38 +58,39 @@ const SideTab = () => {
     setSelected(1);
   }, [commonStore.menu.selectedMenuHref]);
 
-  return useObserver(
-    () =>
-      commonStore?.menu?.selectedMenuHref &&
-      commonStore?.menu?.selectedMenuHref.indexOf("process") > -1 && (
-        <Base active={commonStore?.menu?.selectedMenuHref.indexOf("process") > -1}>
-          {DUMMY_ITEMS.map((value) => {
-            let href = "/";
+  return (
+    <>
+      {commonStore?.menu?.selectedMenuHref &&
+        commonStore?.menu?.selectedMenuHref.indexOf("process") > -1 && (
+          <Base active={commonStore?.menu?.selectedMenuHref.indexOf("process") > -1}>
+            {DUMMY_ITEMS.map((value) => {
+              let href = "/";
 
-            if (value === 1) {
-              href = commonStore.menu.selectedMenuHref;
-            } else {
-              href = commonStore.menu.selectedMenuHref + `/feature${value}`;
-            }
+              if (value === 1) {
+                href = commonStore.menu.selectedMenuHref;
+              } else {
+                href = commonStore.menu.selectedMenuHref + `/feature${value}`;
+              }
 
-            return (
-              <StyledRipples key={value}>
-                <Link href={href}>
-                  <a>
-                    <TabItem
-                      active={value === Number(selected)}
-                      onClick={handleTab}
-                      data-value={value}>
-                      side feature {value}
-                    </TabItem>
-                  </a>
-                </Link>
-              </StyledRipples>
-            );
-          })}
-        </Base>
-      ),
+              return (
+                <StyledRipples key={value}>
+                  <Link href={href}>
+                    <a>
+                      <TabItem
+                        active={value === Number(selected)}
+                        onClick={handleTab}
+                        data-value={value}>
+                        side feature {value}
+                      </TabItem>
+                    </a>
+                  </Link>
+                </StyledRipples>
+              );
+            })}
+          </Base>
+        )}
+    </>
   );
 };
 
-export default SideTab;
+export default observer(SideTab);

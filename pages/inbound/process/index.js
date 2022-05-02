@@ -12,7 +12,7 @@ const Heading = styled.h1`
 
 const ContentHead = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 const ContentBody = styled.div``;
@@ -22,7 +22,6 @@ const InboundProcessPage = () => {
     <Base>
       <Heading>Inbound Process Page</Heading>
       <ContentHead>
-        <PageDashboardBox />
         <PageButtonPannel />
       </ContentHead>
       <ContentBody>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useObserver } from "mobx-react";
+import { observer } from "mobx-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
@@ -71,7 +71,7 @@ const TabNavigation = () => {
     commonStore.menu.selectedMenuHref = e.target.dataset.href;
   };
 
-  return useObserver(() => (
+  return (
     <Base>
       <TabList>
         {commonStore.menu.tabNavigationItems.map((item) => (
@@ -97,7 +97,7 @@ const TabNavigation = () => {
         ))}
       </TabList>
     </Base>
-  ));
+  );
 };
 
-export default TabNavigation;
+export default observer(TabNavigation);

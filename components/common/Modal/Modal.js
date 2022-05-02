@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { CSSTransition } from "react-transition-group";
 
 import Portal from "./Portal";
 
 const Overlay = styled.div`
+  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   position: fixed;
   z-index: 10;
   top: 0;
@@ -11,7 +11,6 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   overflow: hidden;
-  display: flex;
   align-items: center;
   justify-content: center;
 `;
@@ -27,26 +26,27 @@ const Dim = styled.div`
 `;
 
 const Container = styled.div`
-  max-width: 456px;
+  width: ${({ width }) => (width ? width : "600px")};
+  // height: ${({ height }) => (height ? height : "252px")};
   position: relative;
-  width: 100%;
   z-index: 100;
+  border-radius: 4px;
+  background-color: #fff;
 `;
 
-const Modal = ({ children, isOpen, onClose, selector = "#modal-root" }) => {
+const Modal = ({ children, width, height, isOpen, selector = "#modal-root" }) => {
   return (
-    <CSSTransition
-      in={true}
-      timeout={300}
-      classNames="modal"
-      unmountOnExit>
-      <Portal selector={selector}>
-        <Overlay>
-          <Dim onClick={onClose} />
-          <Container>{children}</Container>
-        </Overlay>
-      </Portal>
-    </CSSTransition>
+    <Portal selector={selector}>
+      <Overlay isOpen={isOpen}>
+        <Dim />
+        <Container
+          width={width}
+          // height={height}
+        >
+          {children}
+        </Container>
+      </Overlay>
+    </Portal>
   );
 };
 

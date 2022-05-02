@@ -5,9 +5,14 @@ const commonStore = observable({
     tabNavigationItems: [],
     selectedMenuHref: "",
   },
-  modal: {
-    open: () => {},
-    close: () => {},
+  commonModal: {
+    isOpen: false,
+    open() {
+      this.isOpen = true;
+    },
+    close() {
+      this.isOpen = false;
+    },
   },
 });
 

@@ -20,7 +20,7 @@ const ButtonWrapper = styled.li`
 
 const Button = styled.button`
   width: 100px;
-  height: 80px;
+  height: 72px;
   border: 1px solid #a4a4a4;
   border-radius: 4px;
   background-color: #fff;

@@ -1,5 +1,5 @@
 const InboundFeaturePage = () => {
-  return <>InboundFeaturePage 3</>;
+  return <>Inbound Feature Page 3</>;
 };
 
 export default InboundFeaturePage;

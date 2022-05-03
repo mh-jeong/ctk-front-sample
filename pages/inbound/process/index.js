@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import axios from "api";
 import PageButtonPanel from "components/common/PageButtonPanel";
-import ReactTable from "components/common/ReactTable";
+import CommonTable from "components/common/CommonTable";
 import SideTab from "components/layout/AppBody/SideTab/SideTab";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
@@ -60,7 +60,7 @@ const InboundProcessPage = () => {
               <PageButtonPanel />
             </ContentHead>
             <ContentBody>
-              <ReactTable
+              <CommonTable
                 title={"Packing List"}
                 propData={data.results}
               />

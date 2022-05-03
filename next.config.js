@@ -13,6 +13,7 @@ const nextConfig = {
         store: path.resolve(__dirname, "/mobx/store"),
         styles: path.resolve(__dirname, "/styles"),
         api: path.resolve(__dirname, "/api"),
+        feature: path.resolve(__dirname, "/feature"),
         ...config.resolve.alias,
       },
       fallback: {

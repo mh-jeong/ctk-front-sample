@@ -1,4 +1,11 @@
 const theme = {
+  typography: {
+    heading: "24px",
+    subHeading: "",
+    body1: "",
+    body2: "",
+    caption: "",
+  },
   colors: {
     white: "#fff",
     black: "#202020",

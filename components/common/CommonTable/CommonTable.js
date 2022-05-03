@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 import { useFilters, useGlobalFilter, useSortBy, useTable } from "react-table";
 
-import CommonModal from "../Modal/CommonModal";
+import CommonModal from "../../../feature/app/CommonModal";
 import {
   DefaultColumnFilter,
   filterGreaterThan,
@@ -11,10 +11,10 @@ import {
   NumberRangeColumnFilter,
   SelectColumnFilter,
   SliderColumnFilter,
-} from "./ReactTable.filter";
-import * as S from "./ReactTable.styled";
+} from "./CommonTable.filter";
+import * as S from "./CommonTable.styled";
 
-const ReactTable = ({ title, propData }) => {
+const CommonTable = ({ title, propData }) => {
   const data = useMemo(() => propData, []);
   const columns = useMemo(
     () => [
@@ -169,4 +169,4 @@ const ReactTable = ({ title, propData }) => {
   );
 };
 
-export default ReactTable;
+export default CommonTable;

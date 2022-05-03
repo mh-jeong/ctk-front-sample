@@ -8,7 +8,7 @@ export const ModalHeader = styled.div`
 
 export const Title = styled.div`
   font-size: 20px;
-  padding: 20px;
+  padding: 24px 20px 20px 20px;
 `;
 
 export const HeaderCloseButton = styled.div`
@@ -18,7 +18,7 @@ export const HeaderCloseButton = styled.div`
 `;
 
 export const ModalBody = styled.div`
-  padding: 20px 20px 36px 20px;
+  padding: 24px 20px 36px 20px;
 `;
 
 export const ModalFooter = styled.div`

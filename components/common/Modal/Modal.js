@@ -1,17 +1,12 @@
 import * as S from "./Modal.styled";
 import Portal from "./Portal";
 
-const Modal = ({ children, width, height, isOpen, selector = "#modal-root" }) => {
+const Modal = ({ children, width, isOpen, selector = "#modal-root" }) => {
   return (
     <Portal selector={selector}>
       <S.Overlay isOpen={isOpen}>
         <S.Dim />
-        <S.Container
-          width={width}
-          // height={height}
-        >
-          {children}
-        </S.Container>
+        <S.Container width={width}>{children}</S.Container>
       </S.Overlay>
     </Portal>
   );

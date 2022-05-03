@@ -6,7 +6,7 @@ import { useAsyncDebounce } from "react-table";
 
 import commonStore from "/mobx/store/common";
 
-import * as S from "./ReactTable.styled";
+import * as S from "./CommonTable.styled";
 
 // Define a default UI for filtering
 export const GlobalFilter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) => {

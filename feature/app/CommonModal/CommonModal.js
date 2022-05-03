@@ -3,7 +3,7 @@ import { IoCloseOutline } from "react-icons/io5";
 
 import useStore from "/mobx/store";
 
-import Modal from "../Modal";
+import Modal from "../../../components/common/Modal/Modal";
 import * as S from "./CommonModal.styled";
 
 const CommonModal = ({

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 import { useFilters, useGlobalFilter, useSortBy, useTable } from "react-table";
 
@@ -12,7 +13,6 @@ import {
   SliderColumnFilter,
 } from "./ReactTable.filter";
 import * as S from "./ReactTable.styled";
-import { useRouter } from "next/router";
 
 const ReactTable = ({ title, propData }) => {
   const data = useMemo(() => propData, []);

@@ -1,2 +1,2 @@
-export * from "./PageButtonPannel";
-export { default } from "./PageButtonPannel";
+export * from "./PageButtonPanel";
+export { default } from "./PageButtonPanel";

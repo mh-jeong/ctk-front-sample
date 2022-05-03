@@ -13,7 +13,7 @@ const Base = styled.div`
 const LoginFormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 480px;
+  width: 420px;
   padding: 24px;
   //border: 1px solid #083a90;
   //border-radius: 4px;
@@ -68,7 +68,6 @@ const LoginPage = () => {
   return (
     <Base>
       <LoginFormWrapper>
-        <Title>COLO - Global </Title>
         <IdInput
           type="text"
           ref={idInput}

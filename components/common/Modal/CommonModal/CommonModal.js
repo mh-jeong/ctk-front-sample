@@ -1,63 +1,10 @@
-import styled from "@emotion/styled";
 import { observer } from "mobx-react";
+import { IoCloseOutline } from "react-icons/io5";
 
 import useStore from "/mobx/store";
 
 import Modal from "../Modal";
-import { IoCloseOutline } from "react-icons/io5";
-
-const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Title = styled.div`
-  font-size: 20px;
-  padding: 20px;
-`;
-
-const HeaderCloseButton = styled.div`
-  font-size: 24px;
-  padding: 20px;
-  cursor: pointer;
-`;
-
-const ModalBody = styled.div`
-  padding: 20px 20px 36px 20px;
-`;
-
-const ModalFooter = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px;
-`;
-
-const ConfirmButton = styled.button`
-  border: 1px solid transparent;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  padding: 8px 16px;
-  font-size: 15px;
-  border-radius: 4px;
-  margin-left: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: #062f77;
-  }
-`;
-
-const CloseButton = styled.button`
-  border: 1px solid #202020;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 15px;
-  background-color: #fff;
-  cursor: pointer;
-  &:hover {
-    background-color: #deebff;
-  }
-`;
+import * as S from "./CommonModal.styled";
 
 const CommonModal = ({
   width = "460px",
@@ -82,29 +29,29 @@ const CommonModal = ({
       isOpen={commonStore.commonModal.isOpen}
       width={width}>
       {(title || useHeaderClose) && (
-        <ModalHeader>
-          <Title>{title}</Title>
+        <S.ModalHeader>
+          <S.Title>{title}</S.Title>
           {(useHeaderClose || !useFooter) && (
-            <HeaderCloseButton onClick={handleClose}>
+            <S.HeaderCloseButton onClick={handleClose}>
               <IoCloseOutline />
-            </HeaderCloseButton>
+            </S.HeaderCloseButton>
           )}
-        </ModalHeader>
+        </S.ModalHeader>
       )}
-      <ModalBody>
+      <S.ModalBody>
         <div>{content}</div>
-      </ModalBody>
+      </S.ModalBody>
       {useFooter && (
-        <ModalFooter>
+        <S.ModalFooter>
           {isConfirmModal && (
-            <CloseButton onClick={handleCloseCallback || handleClose}>
+            <S.CloseButton onClick={handleCloseCallback || handleClose}>
               {closeButtonText}
-            </CloseButton>
+            </S.CloseButton>
           )}
-          <ConfirmButton onClick={handleConfirmCallback || handleClose}>
+          <S.ConfirmButton onClick={handleConfirmCallback || handleClose}>
             {confirmButtonText}
-          </ConfirmButton>
-        </ModalFooter>
+          </S.ConfirmButton>
+        </S.ModalFooter>
       )}
     </Modal>
   );

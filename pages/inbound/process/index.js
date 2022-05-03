@@ -1,9 +1,19 @@
 import styled from "@emotion/styled";
-import API from "api";
-import PageButtonPannel from "components/common/PageButtonPannel";
+import axios from "api";
+import PageButtonPanel from "components/common/PageButtonPanel";
 import ReactTable from "components/common/ReactTable";
+import SideTab from "components/layout/AppBody/SideTab/SideTab";
+import { dehydrate, QueryClient, useQuery } from "react-query";
 
-const Base = styled.div``;
+const Page = styled.div`
+  display: flex;
+`;
+
+const Content = styled.div`
+  width: calc(100vw - 200px);
+  min-width: 1720px;
+  padding: 24px 24px 80px;
+`;
 
 const Heading = styled.h1`
   font-size: 24px;
@@ -17,28 +27,65 @@ const ContentHead = styled.div`
 
 const ContentBody = styled.div``;
 
-const InboundProcessPage = ({ data }) => {
+const InboundProcessPage = () => {
+  const { data, isLoading } = useQuery("list", async () => {
+    const { data } = await axios.get("/movie/upcoming");
+    return data;
+  });
+
+  const tabs = [
+    {
+      id: 0,
+      href: "/inbound/process",
+    },
+    {
+      id: 1,
+      href: "/inbound/process/feature2",
+    },
+    {
+      id: 2,
+      href: "/inbound/process/feature3",
+    },
+  ];
   return (
-    <Base>
-      <Heading>Inbound Process Page</Heading>
-      <ContentHead>
-        <PageButtonPannel />
-      </ContentHead>
-      <ContentBody>
-        <ReactTable
-          title={"Packing List"}
-          propData={data.results}
-        />
-      </ContentBody>
-    </Base>
+    <Page>
+      <SideTab tabs={tabs} />
+      <Content>
+        {isLoading ? (
+          "Loading..."
+        ) : (
+          <>
+            <Heading>Inbound Process Page</Heading>
+            <ContentHead>
+              <PageButtonPanel />
+            </ContentHead>
+            <ContentBody>
+              <ReactTable
+                title={"Packing List"}
+                propData={data.results}
+              />
+            </ContentBody>
+          </>
+        )}
+      </Content>
+    </Page>
   );
 };
 
-export const getServerSideProps = async () => {
-  const result = await API.get("/movie/upcoming");
+export const getServerSideProps = () => {
+  const queryClient = new QueryClient();
+
+  queryClient.prefetchQuery("list", () => {
+    const { data } = axios.get("/movie/upcoming");
+    return data;
+  });
+
+  // console.log("@queryClient", queryClient);
 
   return {
-    props: { data: result.data },
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
   };
 };
 

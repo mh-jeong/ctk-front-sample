@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Base = styled.div``;
 
-export const NotificationIconWrapper = styled.div`
+export const SettingsIconWrapper = styled.div`
   position: relative;
   width: 44px;
   height: 44px;
@@ -16,7 +16,7 @@ export const NotificationIconWrapper = styled.div`
   }
 `;
 
-export const NotificationInfoList = styled.ul`
+export const SettingsMenuList = styled.ul`
   position: absolute;
   display: ${({ active }) => (active ? "block" : "none")};
   background-color: #fff;
@@ -28,7 +28,7 @@ export const NotificationInfoList = styled.ul`
   z-index: 11;
 `;
 
-export const NotificationInfo = styled.li`
+export const SettingsMenu = styled.li`
   cursor: pointer;
   padding: 16px;
   &:hover {

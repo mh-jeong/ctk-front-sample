@@ -1,2 +1,2 @@
-export * from "./Notification";
-export { default } from "./Notification";
+export * from "./Settings";
+export { default } from "./Settings";

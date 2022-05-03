@@ -44,6 +44,9 @@ export const StyledTable = styled.div`
       border-right: 0;
       background-color: #fff;
       cursor: pointer;
+      //&:hover {
+      //  background-color: #deebff;
+      //}
     }
 
     th,

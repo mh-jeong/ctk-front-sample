@@ -1,4 +1,5 @@
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,7 +15,12 @@ const nextConfig = {
         api: path.resolve(__dirname, "/api"),
         ...config.resolve.alias,
       },
+      fallback: {
+        process: false,
+        buffer: false,
+      },
     };
+    config.plugins.push(new Dotenv());
     return config;
   },
 };

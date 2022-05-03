@@ -1,4 +1,4 @@
-import * as S from "./PageButtonPannel.styled";
+import * as S from "./PageButtonPanel.styled";
 
 const DUMMY_DATA = [
   {
@@ -19,7 +19,7 @@ const DUMMY_DATA = [
   },
 ];
 
-const PageButtonPannel = () => {
+const PageButtonPanel = () => {
   const handleOnClick = (e) => {
     alert(`click ${e.currentTarget.dataset.name}`);
   };
@@ -41,4 +41,4 @@ const PageButtonPannel = () => {
   );
 };
 
-export default PageButtonPannel;
+export default PageButtonPanel;

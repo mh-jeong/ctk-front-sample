@@ -142,7 +142,7 @@ const ReactTable = ({ title, propData }) => {
                       <td
                         {...cell.getCellProps()}
                         onClick={handleClickRow}
-                        data-id={row.id}>
+                        data-id={row.original.id}>
                         {cell.render("Cell")}
                       </td>
                     );

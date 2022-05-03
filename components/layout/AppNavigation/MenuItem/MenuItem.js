@@ -47,13 +47,19 @@ const MenuItem = ({ menu }) => {
     commonStore.menu.selectedMenuHref = e.target.dataset.href;
   });
 
+  const 지울것 = (e) => {
+    commonStore.menu.selectedMenuHref = e.target.dataset.href;
+  };
+
   return (
     <>
       {!menu.sub.length > 0 ? (
         <S.Ripples>
           <Link href={menu.href}>
             <a>
-              <S.Base>
+              <S.Base
+                onClick={지울것}
+                data-href={menu.href}>
                 <S.Menu active={pathname === menu.href}>Home</S.Menu>
               </S.Base>
             </a>

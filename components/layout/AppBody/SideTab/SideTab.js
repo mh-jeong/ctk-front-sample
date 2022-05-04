@@ -14,7 +14,7 @@ const SideTab = ({ tabs }) => {
           <S.StyledRipples key={tab.id}>
             <Link href={tab.href}>
               <a>
-                <S.TabItem active={router.pathname === tab.href}>side feature {idx + 1}</S.TabItem>
+                <S.TabItem active={router.pathname === tab.href}>{tab.name}</S.TabItem>
               </a>
             </Link>
           </S.StyledRipples>

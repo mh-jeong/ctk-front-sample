@@ -3,6 +3,7 @@ import { createRipples } from "react-ripples";
 
 export const Base = styled.div`
   width: 200px;
+  min-width: 200px;
   padding: 24px 16px;
   border-right: 1px solid #eee;
   background-color: #fafbfc;

@@ -4,10 +4,11 @@ import SideTab from "components/layout/AppBody/SideTab/SideTab";
 
 const Page = styled.div`
   display: flex;
+  flex-grow: 1;
 `;
 
 const Content = styled.div`
-  width: calc(100vw - 200px);
+  width: 100%;
   min-width: 1720px;
   padding: 24px 24px 80px;
 `;
@@ -25,23 +26,8 @@ const ContentHead = styled.div`
 const ContentBody = styled.div``;
 
 const InboundFeaturePage = () => {
-  const tabs = [
-    {
-      id: 0,
-      href: "/inbound/process",
-    },
-    {
-      id: 1,
-      href: "/inbound/process/feature2",
-    },
-    {
-      id: 2,
-      href: "/inbound/process/feature3",
-    },
-  ];
   return (
     <Page>
-      <SideTab tabs={tabs} />
       <Content>
         <Heading>Inbound Feature Page 2</Heading>
         <ContentHead>

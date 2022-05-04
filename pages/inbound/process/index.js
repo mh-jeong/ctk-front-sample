@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
 import axios from "api";
-import PageButtonPanel from "components/common/PageButtonPanel";
 import CommonTable from "components/common/CommonTable";
-import SideTab from "components/layout/AppBody/SideTab/SideTab";
+import PageButtonPanel from "components/common/PageButtonPanel";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
 const Page = styled.div`
   display: flex;
+  flex-grow: 1;
 `;
 
 const Content = styled.div`
-  width: calc(100vw - 200px);
+  width: 100%;
   min-width: 1720px;
   padding: 24px 24px 80px;
 `;
@@ -33,23 +33,8 @@ const InboundProcessPage = () => {
     return data;
   });
 
-  const tabs = [
-    {
-      id: 0,
-      href: "/inbound/process",
-    },
-    {
-      id: 1,
-      href: "/inbound/process/feature2",
-    },
-    {
-      id: 2,
-      href: "/inbound/process/feature3",
-    },
-  ];
   return (
     <Page>
-      <SideTab tabs={tabs} />
       <Content>
         {isLoading ? (
           "Loading..."

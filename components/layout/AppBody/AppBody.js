@@ -11,8 +11,9 @@ const Base = styled.div`
 
 const Body = styled.div`
   display: flex;
-  min-width: 1920px;
-  min-height: calc(100vh - (72px + 60px + 60px));
+  min-width: ${({ theme }) => theme.minWidth + "px"};
+  min-height: ${({ theme }) =>
+    `calc(100vh - (${theme.layout.appHeaderHeight}px + ${theme.layout.appNavigationHeight}px + ${theme.layout.tabNavigationHeight}px)`};
   transition: 0.25s;
 `;
 

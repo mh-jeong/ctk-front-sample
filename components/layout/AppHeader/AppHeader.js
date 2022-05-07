@@ -6,7 +6,7 @@ import Notification from "./Notification";
 import Settings from "./Settings";
 
 const Base = styled.header`
-  height: 72px;
+  height: ${({ theme }) => `${theme.layout.appHeaderHeight}px`};
   padding-left: 16px;
   padding-right: 16px;
   background-color: ${({ theme }) => theme.colors.white};

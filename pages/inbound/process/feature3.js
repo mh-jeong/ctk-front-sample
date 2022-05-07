@@ -9,7 +9,7 @@ const Page = styled.div`
 
 const Content = styled.div`
   width: 100%;
-  min-width: 1720px;
+  min-width: ${({ theme }) => `${theme.layout.minWidth - theme.layout.sideTabWidth}px`};
   padding: 24px 24px 80px;
 `;
 

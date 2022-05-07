@@ -1,6 +1,6 @@
+import axios from "api";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
-import axios from "api";
 
 const InboudProcessDetail = () => {
   const router = useRouter();

@@ -1,4 +1,11 @@
 const theme = {
+  layout: {
+    appHeaderHeight: 72,
+    appNavigationHeight: 60,
+    tabNavigationHeight: 60,
+    minWidth: 1680,
+    sideTabWidth: 200,
+  },
   typography: {
     heading: "24px",
     subHeading: "",

@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { createRipples } from "react-ripples";
 
 export const Base = styled.div`
-  width: 200px;
-  min-width: 200px;
+  width: ${({ theme }) => `${theme.layout.sideTabWidth}px`};
+  min-width: ${({ theme }) => `${theme.layout.sideTabWidth}px`};
   padding: 24px 16px;
   border-right: 1px solid #eee;
   background-color: #fafbfc;

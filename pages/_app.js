@@ -9,6 +9,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import theme from "styles/theme";
 
 import useStore from "../mobx/store";
@@ -18,17 +19,6 @@ function MyApp({ Component, pageProps }) {
   const { authStore } = useStore();
   const router = useRouter();
   return (
-    // <>
-    //   {router.pathname.indexOf("auth") > -1 ? (
-    //     <QueryClientProvider client={queryClient}>
-    //       <Head>
-    //         <title>COLO - Global</title>
-    //       </Head>
-    //       <ThemeProvider theme={theme}>
-    //         <Component {...pageProps} />
-    //       </ThemeProvider>
-    //     </QueryClientProvider>
-    //   ) : (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Head>
@@ -40,12 +30,11 @@ function MyApp({ Component, pageProps }) {
           <AppBody>
             <Component {...pageProps} />
           </AppBody>
-          <div id="modal-root" />
+          <div id="un_modalRoot" />
         </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </Hydrate>
     </QueryClientProvider>
-    //   )}
-    // </>
   );
 }
 

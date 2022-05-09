@@ -57,7 +57,19 @@ const InboundProcessPage = () => {
   );
 };
 
-export const getServerSideProps = () => {
+export const getServerSideProps = ({ req }) => {
+  const ip =
+    req.headers["x-forwarded-for"] ||
+    req.connection.remoteAddress ||
+    req.socket.remoteAddress ||
+    req.connection.socket.remoteAddress;
+
+  console.log("@ip", ip);
+  console.log('req.headers["x-forwarded-for"]', req.headers["x-forwarded-for"]);
+  console.log("req.connection.remoteAddress", req.connection.remoteAddress);
+  console.log("req.socket.remoteAddress", req.socket.remoteAddress);
+  console.log("req.connection.socket.remoteAddress", req.connection.socket?.remoteAddress);
+
   const queryClient = new QueryClient();
 
   queryClient.prefetchQuery("list", () => {

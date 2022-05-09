@@ -1,11 +1,9 @@
-import _axios from "axios";
+import axios from "axios";
 
-const axios = _axios.create({
-  baseURL: `${process.env.ENV_API_HOST}/${process.env.ENV_API_VERSION}`,
+export const sampleApi = axios.create({
+  baseURL: `${process.env.ENV_SAMPLE_API_HOST}/${process.env.ENV_SAMPLE_API_VERSION}`,
   params: {
-    api_key: process.env.ENV_API_KEY,
+    api_key: process.env.ENV_SAMPLE_API_KEY,
     language: "ko-KR",
   },
 });
-
-export default axios;

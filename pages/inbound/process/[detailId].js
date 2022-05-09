@@ -1,4 +1,4 @@
-import axios from "api";
+import { sampleApi } from "api";
 import { useRouter } from "next/router";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 
@@ -7,7 +7,7 @@ const InboudProcessDetail = () => {
   const { detailId } = router.query;
 
   const { data, isLoading } = useQuery(["list", detailId], async () => {
-    const { data } = await axios.get(`/movie/${detailId}`);
+    const { data } = await sampleApi.get(`/movie/${detailId}`);
     return data;
   });
 
@@ -33,7 +33,7 @@ export const getServerSideProps = (context) => {
   const queryClient = new QueryClient();
 
   queryClient.prefetchQuery(["list", detailId], () => {
-    const { data } = axios.get(`/movie/${detailId}`);
+    const { data } = sampleApi.get(`/movie/${detailId}`);
     return data;
   });
 

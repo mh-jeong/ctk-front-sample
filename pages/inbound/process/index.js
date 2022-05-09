@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import axios from "api";
+import { sampleApi } from "api";
 import CommonTable from "components/common/CommonTable";
 import PageButtonPanel from "components/common/PageButtonPanel";
 import { dehydrate, QueryClient, useQuery } from "react-query";
@@ -29,7 +29,7 @@ const ContentBody = styled.div``;
 
 const InboundProcessPage = () => {
   const { data, isLoading } = useQuery("list", async () => {
-    const { data } = await axios.get("/movie/upcoming");
+    const { data } = await sampleApi.get("/movie/upcoming");
     return data;
   });
 
@@ -61,7 +61,7 @@ export const getServerSideProps = () => {
   const queryClient = new QueryClient();
 
   queryClient.prefetchQuery("list", () => {
-    const { data } = axios.get("/movie/upcoming");
+    const { data } = sampleApi.get("/movie/upcoming");
     return data;
   });
 

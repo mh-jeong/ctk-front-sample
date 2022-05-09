@@ -25,7 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local .env.development files
+# local .env files
 .env*.local
 
 # vercel
@@ -99,7 +99,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env.development
+.env
 .env.test
 .env.production
 

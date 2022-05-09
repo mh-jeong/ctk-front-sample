@@ -9,11 +9,12 @@ export const Base = styled.li`
 `;
 
 export const Menu = styled.div`
+  font-size: 18px;
   color: ${({ active }) => (active ? "#fff" : "#a4a4a4")};
   background-color: ${({ selected }) => (selected ? "rgba(255, 255, 255, 0.1)" : "")};
   width: 100%;
-  padding-top: 22px;
-  padding-bottom: 22px;
+  padding-top: 21px;
+  padding-bottom: 21px;
   text-align: center;
   transition: 0.25s;
   &:hover {

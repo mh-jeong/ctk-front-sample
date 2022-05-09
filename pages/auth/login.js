@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { useRef } from "react";
-import authStore from "../../mobx/store/auth";
 import { useRouter } from "next/router";
+import { useRef } from "react";
+
+import authStore from "/mobx/store/auth";
 
 const Base = styled.div`
   display: flex;

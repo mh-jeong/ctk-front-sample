@@ -15,7 +15,7 @@ import {
 import * as S from "./CommonTable.styled";
 
 const CommonTable = ({ title, propData }) => {
-  const data = useMemo(() => propData, []);
+  const data = useMemo(() => propData, [propData]);
   const columns = useMemo(
     () => [
       {
@@ -120,9 +120,13 @@ const CommonTable = ({ title, propData }) => {
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr
+                {...headerGroup.getHeaderGroupProps()}
+                key={headerGroup}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <th
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    key={column}>
                     {column.render("Header")}
                     <span>{column.isSorted ? (column.isSortedDesc ? " 🔽" : " 🔼") : ""}</span>
                     {/*<div>{column.canFilter ? column.render("Filter") : null}</div>*/}
@@ -136,13 +140,16 @@ const CommonTable = ({ title, propData }) => {
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr
+                  {...row.getRowProps()}
+                  key={row}>
                   {row.cells.map((cell) => {
                     return (
                       <td
                         {...cell.getCellProps()}
                         onClick={handleClickRow}
-                        data-id={row.original.id}>
+                        data-id={row.original.id}
+                        key={row}>
                         {cell.render("Cell")}
                       </td>
                     );

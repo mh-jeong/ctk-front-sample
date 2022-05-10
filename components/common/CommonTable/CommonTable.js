@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import { useMemo, useState } from "react";
 import { useFilters, useGlobalFilter, useSortBy, useTable } from "react-table";
 
-import CommonModal from "../../../feature/app/CommonModal";
+import CommonModal from "/feature/app/CommonModal";
+
 import {
   DefaultColumnFilter,
   filterGreaterThan,

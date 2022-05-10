@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useRef } from "react";
 
 import authStore from "/mobx/store/auth";
+import { lessLayout } from "components/layout/layout.utils";
 
 const Base = styled.div`
   display: flex;
@@ -81,3 +82,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+LoginPage.getLayout = lessLayout;
